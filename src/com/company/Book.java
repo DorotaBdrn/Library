@@ -2,13 +2,15 @@ package com.company;
 
 public class Book {
     private String title;
+    private int price;
     private String condition;
-    private String status;
+    private static String status;
 
     public Book(String title, String condition, String status) {
         this.title = title;
         this.condition = condition;
         this.status = status;
+        this.price = 0;
     }
 
     public String getTitle() {
@@ -33,5 +35,21 @@ public class Book {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public static boolean availability(Customer chosenBookTitle) {
+        if (status.equals("available")) {
+            return true;
+        }
+        return false;
+
+    }
+
+    @Override
+    public String toString() {
+        return "The Book's title: '" + title + '\'' +
+                "  price: " + price +
+                ", condition ='" + condition + '\'' +
+                ", status='" + status + '\'' + "\n";
     }
 }

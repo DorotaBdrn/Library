@@ -2,6 +2,6 @@ package com.company;
 
 public interface Person {
 
-     void speak();
+     void ask(int questionNumber);
 
 }
