@@ -62,9 +62,5 @@ public class Customer {
         }
     }
 
-    public static void chooseTheBook() {
-        Scanner scanner = new Scanner(System.in);
-        String chosenBookTitle = scanner.nextLine();
-    }
 
 }

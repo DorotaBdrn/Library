@@ -1,16 +1,26 @@
 package com.company;
 
 public class Book {
+    private int id;
     private String title;
     private int price;
     private String condition;
-    private static String status;
+    private String status;
 
-    public Book(String title, String condition, String status) {
+    public Book(int id, String title, String condition, String status) {
+        this.id = id;
         this.title = title;
         this.condition = condition;
         this.status = status;
         this.price = 0;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -37,11 +47,16 @@ public class Book {
         this.status = status;
     }
 
-    public static boolean availability(Customer chosenBookTitle) {
+    public static boolean availability(String status) {
         if (status.equals("available")) {
             return true;
         }
         return false;
+
+    }
+
+    public static void changeStatus(String currentStatus, String newStatus) {
+        currentStatus = newStatus;
 
     }
 

@@ -57,13 +57,20 @@ public class Worker implements Person {
 
         switch (questionNumber) {
             case 1:
-                System.out.println(" hello! How can I help you ");
+                System.out.println(" hello! How can I help you ?");
                 break;
             case 2:
-                System.out.println("Are you a member of our Library or not  ");
+                System.out.println("Just moment. I have to check your membership ");
                 break;
             case 3:
-                System.out.println("which book would you like to borrow");
+                System.out.println("which book would you like to borrow?\n We have few books in our Library. " +
+                        "1. harryPotter \n" +
+                        "2. winnieThePooh\n" +
+                        "3. cell\n" +
+                        "4. meditations\n" +
+                        "5.hobbit\n" +
+                        "6.prince\n" +
+                        "Choose the number od the book, please");
                 break;
             case 4:
                 System.out.println("This book is not available. Would you like to borrow any other book?");
@@ -76,10 +83,13 @@ public class Worker implements Person {
         }
     }
 
-    public void checkAvailability() {
-        if (Book.availability()) {
-            System.out.println("Book is available");
+
+    public void checkIfMember(String status) {
+        if (status.equals("member")) {
+            System.out.println("--- This customer is a member of the Library ---");
+            ask(3);
+        } else {
+            System.out.println("This customer is  not a member of the Library. He or She has to pay additionally for borrowing the book ");
         }
-        System.out.println("Book is not available");
     }
 }
