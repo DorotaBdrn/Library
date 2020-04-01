@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.Scanner;
+
 public class Book {
     private int id;
     private String title;
@@ -55,8 +57,13 @@ public class Book {
 
     }
 
-    public static void changeStatus(String currentStatus, String newStatus) {
-        currentStatus = newStatus;
+    public static void changeStatus(String currentStatus) {
+        System.out.println("--- Change Status----");
+        Scanner scanner = new Scanner(System.in);
+        String newStatus = scanner.nextLine();
+        if (currentStatus.equals("available")) {
+            currentStatus = newStatus;
+        }
 
     }
 
@@ -66,5 +73,13 @@ public class Book {
                 "  price: " + price +
                 ", condition ='" + condition + '\'' +
                 ", status='" + status + '\'' + "\n";
+    }
+
+    public static void chooseAnotherBook(String status) {
+        while (!status.equals("available")) {
+            System.out.println("Choose another book, please");
+        }
+
+
     }
 }

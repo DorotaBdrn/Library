@@ -46,6 +46,8 @@ public class Main {
             case 1:
                 if (harryPotter.availability(harryPotter.getStatus())) {
                     System.out.println("book " + harryPotter.getTitle() + " is " + harryPotter.getStatus());
+                    harryPotter.chooseAnotherBook(harryPotter.getStatus());
+                    harryPotter.changeStatus(harryPotter.getStatus());
                 }
                 System.out.println("Unfortunately book " + harryPotter.getTitle() + " is " + harryPotter.getStatus());
                 break;
