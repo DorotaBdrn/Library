@@ -2,6 +2,8 @@ package com.company;
 
 import java.util.Scanner;
 
+import static com.company.Main.chooseBook;
+
 public class Book {
     private int id;
     private String title;
@@ -49,37 +51,40 @@ public class Book {
         this.status = status;
     }
 
+
     public static boolean availability(String status) {
         if (status.equals("available")) {
             return true;
         }
         return false;
-
     }
 
-    public static void changeStatus(String currentStatus) {
+    public static String changeStatus(String status) {
         System.out.println("--- Change Status----");
-        Scanner scanner = new Scanner(System.in);
-        String newStatus = scanner.nextLine();
-        if (currentStatus.equals("available")) {
-            currentStatus = newStatus;
-        }
-
+        Scanner sc = new Scanner(System.in);
+        String newStatus = sc.nextLine();
+        status = newStatus;
+        System.out.println();
+        return newStatus;
     }
+
 
     @Override
     public String toString() {
-        return "The Book's title: '" + title + '\'' +
+        return "The Book's title: '" + title + '\'' + " id: " + id +
                 "  price: " + price +
                 ", condition ='" + condition + '\'' +
                 ", status='" + status + '\'' + "\n";
     }
 
+
     public static void chooseAnotherBook(String status) {
-        while (!status.equals("available")) {
+
+        if (!status.equals("available")) {
             System.out.println("Choose another book, please");
+            chooseBook();
         }
-
-
     }
+
+
 }
