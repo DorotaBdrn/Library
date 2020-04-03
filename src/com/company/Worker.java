@@ -84,12 +84,14 @@ public class Worker implements Person {
     }
 
 
-    public void checkIfMember(String status) {
+    public boolean checkIfMember(String status) {
         if (status.equals("member")) {
             System.out.println("--- This customer is a member of the Library ---");
             ask(3);
+            return true;
         } else {
             System.out.println("This customer is  not a member of the Library. He or She has to pay additionally for borrowing the book ");
+            return false;
         }
     }
 }

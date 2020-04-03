@@ -2,6 +2,8 @@ package com.company;
 
 import java.util.Scanner;
 
+import static com.company.Main.chooseBook;
+
 public class Customer {
 
     private int id;
@@ -60,6 +62,19 @@ public class Customer {
             case 1:
                 System.out.println("I would like to borrow a book ");
         }
+    }
+
+    public static boolean secondBook() {
+        System.out.println(" Would you like to borrow one more book  yes/no");
+        Scanner scannerSecondBook = new Scanner(System.in);
+        String secondBook = scannerSecondBook.nextLine();
+        if (secondBook.equals("yes")) {
+            System.out.println("Which book 1-6 would you like to borrow?");
+            chooseBook();
+            return true;
+        } else
+            System.out.println("Thank you, enjoy reading ");
+        return false;
     }
 
 

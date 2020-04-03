@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import static com.company.Book.*;
+import static com.company.Customer.secondBook;
 
 public class Main {
 
@@ -38,13 +39,13 @@ public class Main {
         andrew.answer(1);
         anna.ask(2);
         anna.checkIfMember(andrew.getStatus());
-        Scanner scanner = new Scanner(System.in);
+        if (anna.checkIfMember(andrew.getStatus())) {
+            Scanner scanner = new Scanner(System.in);
+            chooseBook();
+            System.out.println(books);
+        } else {
 
-
-        chooseBook();
-
-        System.out.println(books);
-
+        }
 
     }
 
@@ -64,6 +65,7 @@ public class Main {
                 if (harryPotter.availability(harryPotter.getStatus())) {
                     System.out.println("book " + harryPotter.getTitle() + " is " + harryPotter.getStatus());
                     harryPotter.setStatus(changeStatus(harryPotter.getStatus()));
+                    secondBook();
 
 
                 } else {
@@ -76,6 +78,7 @@ public class Main {
                 if (winnieThePooh.availability(winnieThePooh.getStatus())) {
                     System.out.println("book " + winnieThePooh.getTitle() + " is " + winnieThePooh.getStatus());
                     winnieThePooh.setStatus(changeStatus(winnieThePooh.getStatus()));
+                    secondBook();
 
                 } else {
                     System.out.println("Unfortunately book " + winnieThePooh.getTitle() + " is " + winnieThePooh.getStatus());
@@ -87,6 +90,7 @@ public class Main {
                 if (cell.availability(cell.getStatus())) {
                     System.out.println("book " + cell.getTitle() + " is " + cell.getStatus());
                     cell.setStatus(changeStatus(cell.getStatus()));
+                    secondBook();
 
                 } else {
                     System.out.println("Unfortunately book " + cell.getTitle() + " is " + cell.getStatus());
@@ -96,13 +100,14 @@ public class Main {
 
             case 4:
                 if (meditations.availability(meditations.getStatus())) {
-                    System.out.println(meditations.getTitle());
                     System.out.println("book " + meditations.getTitle() + " is " + meditations.getStatus());
                     meditations.setStatus(changeStatus(meditations.getStatus()));
+                    secondBook();
 
                 } else {
                     System.out.println("Unfortunately book " + meditations.getTitle() + " is " + meditations.getStatus());
                     meditations.chooseAnotherBook(meditations.getStatus());
+
 
                 }
                 break;
@@ -111,10 +116,12 @@ public class Main {
                 if (hobbit.availability(hobbit.getStatus())) {
                     System.out.println("book " + hobbit.getTitle() + " is " + hobbit.getStatus());
                     hobbit.setStatus(changeStatus(hobbit.getStatus()));
+                    secondBook();
 
                 } else {
                     System.out.println("Unfortunately book " + hobbit.getTitle() + " is " + hobbit.getStatus());
                     hobbit.chooseAnotherBook(hobbit.getStatus());
+
 
                 }
                 break;
@@ -122,6 +129,7 @@ public class Main {
                 if (prince.availability(prince.getStatus())) {
                     System.out.println("book " + prince.getTitle() + " is " + prince.getStatus());
                     prince.setStatus(changeStatus(prince.getStatus()));
+                    secondBook();
 
                 } else {
                     System.out.println("Unfortunately book " + prince.getTitle() + " is " + prince.getStatus());
@@ -129,6 +137,9 @@ public class Main {
 
 
                 }
+            default:
+                System.out.println("Sorry, choose only a number 1-6");
+                chooseBook();
 
 
         }

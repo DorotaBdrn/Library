@@ -64,7 +64,6 @@ public class Book {
         Scanner sc = new Scanner(System.in);
         String newStatus = sc.nextLine();
         status = newStatus;
-        System.out.println();
         return newStatus;
     }
 

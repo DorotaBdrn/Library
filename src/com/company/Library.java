@@ -9,10 +9,12 @@ public class Library {
     private static int moneySpent;
     private List<Worker> workers;
     private List<Customer> customers;
+    private List<Book> books;
 
-    public Library(List<Worker> workers, List<Customer> customers) {
+    public Library(List<Worker> workers, List<Customer> customers, List<Book> books) {
         this.workers = workers;
         this.customers = customers;
+        this.books = books;
         this.moneyEarned = 0;
         this.moneySpent = 0;
     }
@@ -57,6 +59,14 @@ public class Library {
         this.customers = customers;
     }
 
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
+    }
+
     public static void updateTotalMoneySpent(int salary) {
         moneySpent -= salary;
 
@@ -64,5 +74,17 @@ public class Library {
 
     public static void updateTotalMoneyEarned(int fees) {
         moneyEarned += fees;
+    }
+
+    public void addMember(Customer customer) {
+        customers.add(customer);
+    }
+
+    public void addWorker(Worker worker) {
+        workers.add(worker);
+    }
+
+    public void addBook(Book book) {
+        books.add(book);
     }
 }
