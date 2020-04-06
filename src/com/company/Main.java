@@ -1,12 +1,11 @@
 package com.company;
 
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
 import static com.company.Book.*;
-import static com.company.Customer.secondBook;
+import static com.company.Customer.*;
 
 public class Main {
 
@@ -19,6 +18,8 @@ public class Main {
 
     public static void main(String[] args) {
 
+        List<Worker> workers = new ArrayList<>();
+        List<Customer> customers = new ArrayList<>();
 
         List<Book> books = new ArrayList<>();
         books.add(harryPotter);
@@ -31,22 +32,61 @@ public class Main {
 
         Worker anna = new Worker(1, "Anna", 500);
         Worker peter = new Worker(2, "Peter", 400);
+        Library publicLibrary = new Library(workers, customers, books);
+        workers.add(anna);
 
-        Customer andrew = new Customer(1, "Andrew", "member");
+        Customer andrew = new Customer(1, "Andrew", "notmember");
+        Customer ivo = new Customer(2, "Ivo", "member");
+
+        customers.add(andrew);
+        customers.add(ivo);
 
 
         anna.ask(1);
-        andrew.answer(1);
+        Customer.answer(1);
         anna.ask(2);
-        anna.checkIfMember(andrew.getStatus());
+
+//        anna.checkIfMember(andrew.getStatus());
         if (anna.checkIfMember(andrew.getStatus())) {
             Scanner scanner = new Scanner(System.in);
             chooseBook();
             System.out.println(books);
-        } else {
 
+        } else if (!anna.checkIfMember(andrew.getStatus())) {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("You are not a member of our library so you have to pay for a borrowing every singe book or would you like to buy a membership and pay only annual fees?" +
+                    "\n Would you like to buy a mambership? enter yes/no ");
+            String membershipAnswer = scanner.nextLine();
+            System.out.println(membershipAnswer);
+            if (membershipAnswer.equals("no")) {
+                System.out.println(" the cost is 5e for 2months per book. How many books would yu like to borrow?");
+                Scanner sc = new Scanner(System.in);
+                int booksNumber = sc.nextInt();
+                int fees = 5 * booksNumber;
+                publicLibrary.updateTotalMoneyEarned(fees);
+                anna.ask(3);
+                chooseBook();
+                System.out.println(books);
+
+            } else {
+                Customer customer = new Customer(newMemberId(), newMemberName(), newMemberStatus());
+                customers.add(customer);
+                System.out.println(customers);
+                System.out.println("now You are a member of the library. Annual fees cost 50e");
+                publicLibrary.updateTotalMoneyEarned(50);
+                anna.ask(3);
+                chooseBook();
+                System.out.println(books);
+            }
         }
-
+        System.out.println("the employee " + anna.getName() + " earn " + anna.getSalary());
+        publicLibrary.updateTotalMoneySpent(anna.getSalary());
+        int moneySpent = publicLibrary.getMoneySpent();
+        int moneyEarned = publicLibrary.getMoneyEarned();
+        System.out.println(moneySpent);
+        System.out.println(moneyEarned);
+        int totalMoney = publicLibrary.updateTotalMoney(moneySpent, moneyEarned);
+        System.out.println(totalMoney);
     }
 
 
@@ -137,12 +177,14 @@ public class Main {
 
 
                 }
+                break;
             default:
                 System.out.println("Sorry, choose only a number 1-6");
                 chooseBook();
 
 
         }
-
     }
+
+
 }

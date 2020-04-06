@@ -12,6 +12,9 @@ public class Customer {
     private int fees;
     private int feesInTotal;
 
+    public Customer() {
+    }
+
     public Customer(int id, String name, String status) {
         this.id = id;
         this.name = name;
@@ -19,6 +22,7 @@ public class Customer {
         this.fees = 0;
         this.feesInTotal = 0;
     }
+
 
     public int getId() {
         return id;
@@ -57,7 +61,7 @@ public class Customer {
         Library.updateTotalMoneyEarned(feesInTotal);
     }
 
-    public void answer(int answerNumber) {
+    public static void answer(int answerNumber) {
         switch (answerNumber) {
             case 1:
                 System.out.println("I would like to borrow a book ");
@@ -77,5 +81,36 @@ public class Customer {
         return false;
     }
 
+    static Scanner sc = new Scanner(System.in);
 
+    public static int newMemberId() {
+
+        System.out.println("Add new Member. Enter an  id, name and status, first uniq id:");
+        int newId = sc.nextInt();
+        return newId;
+    }
+
+    public static String newMemberName() {
+        System.out.println("enter a name");
+        Scanner scanner1 = new Scanner(System.in);
+        String newName = scanner1.nextLine();
+        return newName;
+    }
+
+    public static String newMemberStatus() {
+        System.out.println("enter a status");
+        Scanner scanner2 = new Scanner(System.in);
+        String newStatus = scanner2.nextLine();
+        return newStatus;
+
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", status='" + status + '\'' +
+                "}\n";
+    }
 }

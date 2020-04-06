@@ -60,10 +60,10 @@ public class Worker implements Person {
                 System.out.println(" hello! How can I help you ?");
                 break;
             case 2:
-                System.out.println("Just moment. I have to check your membership ");
+                System.out.println("Just moment. I have to check your membership. What is your name?");
                 break;
             case 3:
-                System.out.println("which book would you like to borrow?\n We have few books in our Library. " +
+                System.out.println("which book would you like to borrow?\n We have few books in our Library. \n" +
                         "1. harryPotter \n" +
                         "2. winnieThePooh\n" +
                         "3. cell\n" +
@@ -90,7 +90,7 @@ public class Worker implements Person {
             ask(3);
             return true;
         } else {
-            System.out.println("This customer is  not a member of the Library. He or She has to pay additionally for borrowing the book ");
+            System.out.println("This customer is  not a member of the Library. He or She has to pay additionally for borrowing the book or sign in");
             return false;
         }
     }

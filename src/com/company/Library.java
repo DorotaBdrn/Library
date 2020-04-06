@@ -15,7 +15,7 @@ public class Library {
         this.workers = workers;
         this.customers = customers;
         this.books = books;
-        this.moneyEarned = 0;
+        this.moneyEarned = 1000;
         this.moneySpent = 0;
     }
 
@@ -74,6 +74,12 @@ public class Library {
 
     public static void updateTotalMoneyEarned(int fees) {
         moneyEarned += fees;
+    }
+
+    public static int updateTotalMoney(int moneySpent, int moneyEarned) {
+        int totalMoney = moneyEarned + moneySpent;
+
+        return totalMoney;
     }
 
     public void addMember(Customer customer) {
