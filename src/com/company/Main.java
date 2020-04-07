@@ -1,11 +1,14 @@
 package com.company;
 
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 import static com.company.Book.*;
 import static com.company.Customer.*;
+import static com.company.Worker.feesReminder;
 
 public class Main {
 
@@ -35,24 +38,26 @@ public class Main {
         Library publicLibrary = new Library(workers, customers, books);
         workers.add(anna);
 
-        Customer andrew = new Customer(1, "Andrew", "notmember");
-        Customer ivo = new Customer(2, "Ivo", "member");
+        Customer customer1 = new Customer(1, "Andrew", "member", LocalDate.of(2019, 02, 01));
+        Customer customer2 = new Customer(2, "Ivo", "member", LocalDate.of(2019, 01, 01));
 
-        customers.add(andrew);
-        customers.add(ivo);
+        customers.add(customer1);
+        customers.add(customer2);
 
 
         anna.ask(1);
         Customer.answer(1);
         anna.ask(2);
 
-//        anna.checkIfMember(andrew.getStatus());
-        if (anna.checkIfMember(andrew.getStatus())) {
+//        anna.checkIfMember(customer1.getStatus());
+        if (anna.checkIfMember(customer1.getStatus())) {
             Scanner scanner = new Scanner(System.in);
             chooseBook();
             System.out.println(books);
-
-        } else if (!anna.checkIfMember(andrew.getStatus())) {
+            System.out.println(publicLibrary.getMoneyEarned());
+            feesReminder(customer1.getFeesDate(), LocalDate.now());
+            System.out.println(publicLibrary.getMoneyEarned());
+        } else if (!anna.checkIfMember(customer1.getStatus())) {
             Scanner scanner = new Scanner(System.in);
             System.out.println("You are not a member of our library so you have to pay for a borrowing every singe book or would you like to buy a membership and pay only annual fees?" +
                     "\n Would you like to buy a mambership? enter yes/no ");
@@ -69,7 +74,7 @@ public class Main {
                 System.out.println(books);
 
             } else {
-                Customer customer = new Customer(newMemberId(), newMemberName(), newMemberStatus());
+                Customer customer = new Customer(newMemberId(), newMemberName(), newMemberStatus(), LocalDate.now());
                 customers.add(customer);
                 System.out.println(customers);
                 System.out.println("now You are a member of the library. Annual fees cost 50e");

@@ -1,5 +1,8 @@
 package com.company;
 
+import java.sql.Time;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.Scanner;
 
 import static com.company.Main.chooseBook;
@@ -11,14 +14,16 @@ public class Customer {
     private String status;
     private int fees;
     private int feesInTotal;
+    private LocalDate feesDate;
 
     public Customer() {
     }
 
-    public Customer(int id, String name, String status) {
+    public Customer(int id, String name, String status, LocalDate feesDate) {
         this.id = id;
         this.name = name;
         this.status = status;
+        this.feesDate = feesDate;
         this.fees = 0;
         this.feesInTotal = 0;
     }
@@ -54,6 +59,14 @@ public class Customer {
 
     public void setFees(int fees) {
         this.fees = fees;
+    }
+
+    public LocalDate getFeesDate() {
+        return feesDate;
+    }
+
+    public void setFeesDate(LocalDate feesDate) {
+        this.feesDate = feesDate;
     }
 
     public void paidFees(int fees) {
@@ -110,7 +123,9 @@ public class Customer {
         return "Customer{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", status='" + status + '\'' +
+                ", status='" + status + '\'' + "last fees:' " + feesDate + "\'" +
                 "}\n";
     }
+
+
 }

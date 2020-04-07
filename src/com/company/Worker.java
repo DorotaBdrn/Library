@@ -1,5 +1,10 @@
 package com.company;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+
+import static com.company.Library.updateTotalMoneyEarned;
+
 public class Worker implements Person {
     private int id;
     private String name;
@@ -93,5 +98,17 @@ public class Worker implements Person {
             System.out.println("This customer is  not a member of the Library. He or She has to pay additionally for borrowing the book or sign in");
             return false;
         }
+    }
+
+    public static void feesReminder(LocalDate lastFees, LocalDate rightNow) {
+        long daysBetween = ChronoUnit.DAYS.between(lastFees, rightNow);
+        if (daysBetween >= 365) {
+            System.out.println("Last  payment was " + lastFees + " Please pay annual fees again");
+            updateTotalMoneyEarned(50);
+        } else if (daysBetween >= 334 && daysBetween < 365) {
+            System.out.println("Last annual payment was " + lastFees + " Please pay annual fees soon\n");
+
+        }
+
     }
 }
